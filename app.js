@@ -10,6 +10,7 @@ mongoose.connect('mongodb://localhost/dota2mastermind');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const dotaRouter = require('./routes/dota');
+const heroesRouter = require('./routes/heroes')
 const youtubeRouter = require('./routes/youtube');
 
 var app = express();
@@ -28,15 +29,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 app.use('/dota', dotaRouter);
+app.use('/heroes', heroesRouter);
 // app.use('/youtube', youtubeRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
