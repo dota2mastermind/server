@@ -13,6 +13,7 @@ module.exports = {
     })
       .then(({data}) => {
         req.user = data
+        req.body = data
         return User.findOne({
           email: data.email
         })
@@ -31,7 +32,7 @@ module.exports = {
         res.status(400).json({err: err.message})
       })
   },
-  login(req, res, next) {
+  decode(req, res, next) {
     decodeToken(req.headers.token, (err, decoded) => {
       if(err) res.status(400).json({msg: 'Invalid token'})
       else {

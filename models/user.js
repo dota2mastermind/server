@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 const { hashPassword } = require('../helper/helper')
 
 const userSchema = new Schema({
+  name: String,
   email: {
     type: String,
     required: true,

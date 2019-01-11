@@ -26,15 +26,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-<<<<<<< HEAD
 app.use('/users', usersRouter);
-// app.use('/dota', dotaRouter);
-app.use('/youtube', youtubeRouter);
-=======
-// app.use('/users', usersRouter);
 app.use('/dota', dotaRouter);
-// app.use('/youtube', youtubeRouter);
->>>>>>> c9d639b2a57512547319b5a3abd6f7f59180c73e
+app.use('/youtube', youtubeRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

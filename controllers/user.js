@@ -7,7 +7,8 @@ module.exports = {
       next()
     } else {
       User.create({
-        email: req.user.email,
+        name: req.body.name,
+        email: req.body.email,
         password: req.body.password
       })
         .then(user => {
@@ -24,8 +25,14 @@ module.exports = {
     }
   },
   login(req, res) {
+    let dataEmail = ''
+    if (!req.auth) {
+      dataEmail = req.body.email
+    } else {
+      dataEmail = req.user.email
+    }
     User.findOne({
-      email: req.user.email
+      email: dataEmail
     })
       .then(user => {
         if (req.auth === 'google' || comparePassword(req.body.password, user.password)) {
